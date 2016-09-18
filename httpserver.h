@@ -5,7 +5,7 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 #include "common.h"
-#include "httpthread.h"
+#include "httpclient.h"
 
 class HTTPServer : public QTcpServer
 {

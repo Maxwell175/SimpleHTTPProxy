@@ -14,10 +14,10 @@ SOURCES += main.cpp \
     httpserver.cpp \
     common.cpp \
     configmanager.cpp \
-    httpthread.cpp
+    httpclient.cpp
 
 HEADERS += \
     httpserver.h \
     common.h \
     configmanager.h \
-    httpthread.h
+    httpclient.h

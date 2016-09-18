@@ -19,7 +19,6 @@ void HTTPServer::startServer()
 
 void HTTPServer::incomingConnection(qintptr socketDescriptor)
 {
-    HTTPThread *thread = new HTTPThread(socketDescriptor, this);
-    connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
-    thread->start();
+    HTTPClient *worker = new HTTPClient(socketDescriptor);
+    worker->run();
 }

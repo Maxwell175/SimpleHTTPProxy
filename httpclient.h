@@ -15,27 +15,28 @@
 // But we need them.
 // Thus, we should use multiple inheritance: QObject inserted here
 
-class HTTPThread : public QThread
+class HTTPClient : public QObject
 {
     Q_OBJECT
 public:
-    HTTPThread(int socketDescriptor, QObject *parent);
+    HTTPClient(int socketDescriptor);
 
-    void run() Q_DECL_OVERRIDE;
+    void run();
 
 signals:
     void error(QTcpSocket::SocketError socketError);
 
 public slots:
-    void ClientBytesWritten(qint64 bytes);
     void ClientReadyRead();
+    void ClientDisconnected();
 
     void DownstreamConnected();
     void DownstreamReadyRead();
+    void DownstreamDisconnected();
 
 private:
-    QTcpSocket ClientSocket;
-    QTcpSocket DownstreamSocket;
+    QTcpSocket* ClientSocket;
+    QTcpSocket* DownstreamSocket;
 
 private:
     int socketDescriptor;
@@ -47,6 +48,8 @@ private:
     std::string DestinationStr;
     std::vector<std::string>* destinationIPPort;
     unsigned short Port;
+
+    qint64 DownstreamBytesRead = 0;
 
 };
 
