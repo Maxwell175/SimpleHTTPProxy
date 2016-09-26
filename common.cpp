@@ -19,6 +19,18 @@ std::vector<std::string>* Split(std::string Input, std::string Delimiter) {
     return Output;
 }
 
+int countOccurences(std::string Input, std::string SubString) {
+    int count = 0;
+    size_t nPos = Input.find(SubString, 0); // fist occurrence
+    while(nPos != std::string::npos)
+    {
+        count++;
+        nPos = Input.find(SubString, nPos+1);
+    }
+
+    return count;
+}
+
 ConfigManager* GlobalConfig() {
     return Common::GlobalConfig;
 }

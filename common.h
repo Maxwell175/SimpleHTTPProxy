@@ -18,6 +18,7 @@ public:
 
 
 std::vector<std::string>* Split(std::string Input, std::string Delimiter);
+int countOccurences(std::string Input, std::string SubString);
 ConfigManager* GlobalConfig();
 
 
